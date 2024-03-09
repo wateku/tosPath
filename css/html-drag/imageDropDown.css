@@ -1,0 +1,67 @@
+
+#MemberSelectTD{
+    position: relative;
+    height: 100px;
+    margin: 0px;
+}
+
+div.characterSelect {
+    /*style the "box" in its minimzed state*/
+    border: 1px solid black;
+    width: 120px;
+    height: 100px;
+    z-index:  5;
+    position: absolute;
+    overflow: hidden;
+    background: white;
+    /*animate collapsing the dropdown from open to closed state (v. fast)*/
+    -moz-transition: height 0.1s; 
+    -webkit-transition: height 0.1s; 
+    -ms-transition: height 0.1s;  
+    -o-transition: height 0.1s;  
+    transition: height 0.1s;
+}
+div.characterSelect:hover {
+    /*when expanded, the dropdown will get native means of scrolling*/
+    height: 400px;
+    overflow-y: scroll;
+    /*nice and smooth expand - speed this up at your preference or remove animation altogether*/
+    -moz-transition: height 0.5s; 
+    -webkit-transition: height 0.5s; 
+    -ms-transition: height 0.5s;  
+    -o-transition: height 0.5s;  
+    transition: height 0.5s;
+}
+div.characterSelect input {
+    /*hide the nasty default radio buttons. like, completely!*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+
+div.characterSelect label {
+    /*style the labels to look like dropdown options, kinda*/
+    display:none; 
+    height:100px; 
+    opacity:0.6; 
+    /*setting correct backgrounds - add additional rules with selectors based on "for" attribute, 
+     something like label[for=line2]{background-image:...}*/
+    background-repeat: no-repeat;
+    background-size: 100px 100px;
+}
+div.characterSelect:hover label{
+    /*this is how labels render in the "expanded" state. we want to see only the selected radio button 
+     in the collapsed menu, and all of them when expanded*/
+    display:block;
+}
+div.characterSelect label:hover {
+    opacity:0.8;
+}
+div.characterSelect input:checked + label {
+    /*tricky! labels immediately following a checked radio button (with our markup they are semantically related)
+     should be fully opaque regardless of hover, and they should always be visible (i.e. even in the collapsed menu*/
+    opacity:1 !important;
+    display:block;
+}

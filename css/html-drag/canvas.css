@@ -1,0 +1,234 @@
+body{
+    background-image: url('../../img/UI/Card_background.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center; 
+}
+#title{
+    color: black;
+    font-family: "Microsoft JhengHei", Helvetica, Arial, Sans;
+    font-size: 50px;
+}
+
+#main_workplace{
+    background: white;
+}
+#main_workplace .teamLabel{
+    color: black;
+    font-family: "Microsoft JhengHei", Helvetica, Arial, Sans;
+    font-size: 20px;
+}
+
+#DragCanvas{
+    background-image: url('../../img/UI/base.png');
+    background-size: 320px 320px;
+    background-repeat: repeat;
+    cursor: url('../../img/UI/cursor_moveItem.png'), default;
+}
+
+.img-gray{
+    filter: grayscale(40%); 
+    -webkit-filter: grayscale(40%);
+    -moz-filter: grayscale(40%);
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 3.5+ */
+}
+
+
+img.img-btn-lg{
+    background: rgba(0%,0%,0%,0);
+    width: 40px;
+    height: 40px;   
+}
+img.img-btn-sm{
+    background: rgba(0%,0%,0%,0);
+    width: 25px;
+    height: 25px;   
+}
+
+#ComboDiv{
+    background: #151515;
+    border-radius: 30px;
+    margin: auto;
+    height: 520px;
+}
+#ComboInfo{    
+    color: white;
+    font-family:  "Lucida Grande", "Lucida Sans", Helvetica, Arial, Sans;
+    font-weight: 200;
+    font-size: 2em;
+}
+#extraCombo{
+    color: white;
+    font-family:  "Lucida Grande", "Lucida Sans", Helvetica, Arial, Sans;
+    font-weight: 200;
+    font-size: 20px;
+}
+#ComboScrollbar{
+    border-radius: 20px;
+    margin: auto;
+    width: 90%;
+    height: 400px;
+}
+#comboBox div.imgComboSet{ 
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 0px;
+    margin-left: 0px;  
+}
+#comboBox div.comboLabel{ 
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: white;
+    font-family: "Microsoft JhengHei", Helvetica, Arial, Sans;
+    font-size: 30px;
+}
+
+#DropColorScrollbar{
+    background: LightGray;
+    border-radius: 10px;
+    width: 80%;
+}
+#DropColorScrollbar li{
+    cursor: pointer;
+    background: DarkGray;
+    border-radius: 10px;
+}
+#DropColorScrollbar .addNewColor{
+    text-align: center;
+    position: relative;
+}
+#DropColorScrollbar .addNewColor span{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#TeamMember{
+    cursor: default;
+    border-collapse: collapse;
+    border: 1px solid Gray;
+    margin: auto;
+    width: 0px;
+}
+
+
+
+
+#AttackNumber td{
+    background: PaleTurquoise;
+}
+#RecoverNumber td{
+    background: LightPink;
+}
+#ActiveButtonTD td{
+    background: Ivory;
+    border: none;
+}
+#ActiveCoolDownTD td{
+    background: Ivory;
+}
+.AtkRecLabel, .EffectLabel{
+    color: black;
+    margin-left: 10px;
+    font-family: "Microsoft JhengHei", Helvetica, Arial, Sans;
+    font-size: 16px;
+}
+.CDTimeLabel{
+    color: black;
+    margin-left: 10px;
+    font-family: "Microsoft JhengHei", Helvetica, Arial, Sans;
+    font-size: 18px;
+}
+.activeButton{
+    cursor: pointer;
+    width: 120px;
+    min-height: 30px;
+    display: inline-block;
+    margin: auto;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    font-family: "Microsoft JhengHei", Helvetica, Arial, Sans;
+    overflow: hidden;
+    background-image: none;
+    border: 1px solid gray;
+    border-radius: 14px;
+}
+.activeButton[disabled]{
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.5;
+}
+#AdditionalEffectTD td{
+    height: 30px;
+    width: 720px;
+    background: Ivory;
+    border: 1px solid Gray;
+}
+
+#SystemInfomation{
+    cursor: default;
+    border-collapse: collapse;
+    background: #EFEFEF;
+}
+#SystemInfomation th{
+    width: 100px;
+    border: 1px solid Gray;
+    color: black;
+}
+#SystemInfomation td{
+    width: 130px;
+    border: 1px solid Gray;
+    color: black;
+}
+#SystemInfomation th span{
+    margin-left: 10px;
+    font-family: "Microsoft JhengHei", Helvetica, Arial, Sans;
+    font-size: 18px;
+}
+#BattleInfomationScrollbar{
+    width: 750px;
+    height: 200px;
+    background: white;
+}
+span.labelInfo{
+    cursor: pointer;
+    margin-left: 10px;
+    font-family: "Microsoft JhengHei", Helvetica, Arial, Sans;
+    font-size: 16px;
+}

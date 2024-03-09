@@ -1,0 +1,33 @@
+
+body{
+	background-image: url('../../img/UI/Card_background.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center; 
+}
+
+h2{ 
+	color: white;
+    font-family: "Microsoft JhengHei", "Lucida Grande", "Lucida Sans", Helvetica, Arial, Sans;
+    font-weight: 500;
+	text-shadow: #010101 0 5px 8px;
+	text-shadow: #010101 5 0px 8px;
+}
+
+#indexMenu img{
+	width: 200px;
+	margin-top: 50px;
+}
+#indexMenu img.over{
+    cursor: pointer;
+    position: absolute;
+    z-index: 4;
+}
+#indexMenu img.under{
+    position: relative;
+    z-index: 3;
+}
+
+hr{	
+	margin-top: 50px;
+}

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="louisalflame">
+
+    <title>轉珠模擬器｜Tower of Saviors 神魔之塔</title>
+
+    <link rel="shortcut icon" href="tos.ico">
+    <link rel="bookmark" href="tos.ico">
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <!-- CSS for this html -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="css/scrollbar-style.css">
+    <link rel="stylesheet" type="text/css" href="css/dd/dd.css" />
+
+    <link rel="stylesheet" type="text/css" href="css/html-drag/canvas.css">
+    <link rel="stylesheet" type="text/css" href="css/html-drag/imageDropDown.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74512169-1', 'auto');
+      ga('send', 'pageview');
+    </script> -->
+    <!--
+        轉珠模擬器 
+        作者 louisalflame @ PTT
+        最後製作日期 2018/02/25
+    -->
+
+
+</head>
+
+<body>
+
+    <div class="container" >
+	 
+		<br><br><br><br>
+        <div class="row">
+
+            <div class="col-lg-3"></div>
+            <div  id="main_workplace" class="col-lg-6" align="center">
+                <p id="title">轉珠模擬器</p>
+
+                <canvas id="BarCanvas" ></canvas>
+                <br>
+                <canvas id="DragCanvas" ></canvas>
+                <br><br>
+
+                <div id="MainButton" class="btn-group" role="group">
+                    <button id="Edit" class="btn btn-default btn-lg" onclick="setEditMode(this)">
+                        <span >盤面</span></button>
+                    <!-- <button id="Team" class="btn btn-default btn-lg" onclick="setTeamMode(this)">
+                        <span >隊伍</span></button> -->
+                    <button id="Role" class="btn btn-default btn-lg" onclick="setRoleMode(this)">
+                        <span >角色</span></button>
+                    <button id="Move" class="btn btn-default btn-lg" onclick="setMoveMode(this)">
+                        <span >移動</span></button>
+                    <button id="Replay" class="btn btn-default btn-lg" onclick="setReplayMode(this)">
+                        <span >重播</span></button>
+                </div><br><br>
+
+                <div id="EditModeButton">
+                    <!-- <div id="PanelSelector">
+                        <button class="btn btn-default btn-lg" onclick="randomPanel()">
+                            <span >隨機盤面</span></button>
+                        <div class="btn-group" role="group">
+                            <button class="btn btn-default btn-lg" onclick="savePanel(1, this)">
+                                <span >儲存盤面1</span></button>
+                            <button class="btn btn-default btn-lg" onclick="savePanel(2, this)">
+                                <span >儲存盤面2</span></button>
+                            <button class="btn btn-default btn-lg" onclick="savePanel(3, this)">
+                                <span >儲存盤面3</span></button>
+                        </div>
+                    </div><br> -->
+                    <div id="ColorSelector" class="btn-group" role="group">
+                        <button class="btn btn-default" onclick="setColor('w', this)">
+                            <img src="img/Icon/w.png"></button>
+                        <button class="btn btn-default" onclick="setColor('f', this)">
+                            <img src="img/Icon/f.png"></button>
+                        <button class="btn btn-default" onclick="setColor('p', this)">
+                            <img src="img/Icon/p.png"></button>
+                        <button class="btn btn-default" onclick="setColor('l', this)">
+                            <img src="img/Icon/l.png"></button>
+                        <button class="btn btn-default" onclick="setColor('d', this)">
+                            <img src="img/Icon/d.png"></button>
+                        <button class="btn btn-default" onclick="setColor('h', this)">
+                            <img src="img/Icon/h.png"></button>
+                    </div><br><br>
+                    <div id="ColorAttrSelector" class="btn-group" role="group">
+                        <button class="btn btn-default btn-lg" onclick="setColorAttr('strong', this)">
+                            <span>強化珠</span></button>
+                        <button class="btn btn-default btn-lg" onclick="setColorAttr('unknown', this)">
+                            <span>問號珠</span></button>
+                        <button class="btn btn-default btn-lg" onclick="setColorAttr('weather', this)">
+                            <span>風化珠</span></button>
+                        <button class="btn btn-default btn-lg" onclick="setColorFrozen('frozen', this)">
+                            <span>冰凍珠</span></button>
+                    </div><br><br>
+                    <!-- <div id="ColorAttrSelector2" class="btn-group" role="group">
+                        <button class="btn btn-default btn-lg" onclick="setColorAttr('reverse', this)">
+                            <span>黑白珠</span></button>
+                        <button class="btn btn-default btn-lg" onclick="setColorAttr('locking', this)">
+                            <span>鎖定珠</span></button>
+                        <button class="btn btn-default btn-lg" onclick="setColorAttr('inhibit', this)">
+                            <span>隱藏風化</span></button>
+                        <button class="btn btn-default btn-lg" onclick="setColorAttr('phantom', this)">
+                            <span>幻變</span></button>
+                    </div><br> -->
+
+                    <!-- <div id="DropAttrSetting" class="btn-group" role="group">
+                        <button class="btn btn-default btn-lg" onclick="setNewDrop(this)">
+                            <span >隨機落珠</span></button>
+                        <button class="btn btn-default btn-lg" onclick="resetRandom(this)">
+                            <span >新亂數</span></button>
+                        <select id="DropColorSelector" class="selectpicker" data-width="150px" title="落珠選擇" onchange="selectDropColor(this)">
+                            <option value="0" >正常分布</option>
+                            <option value="1" >禁心珠</option>
+                            <option value="2" >亡命感應 ‧ 水</option>
+                            <option value="3" >亡命感應 ‧ 火</option>
+                            <option value="4" >亡命感應 ‧ 木</option>
+                            <option value="5" >聖言詠歌</option>
+                            <option value="6" >夜言鳴曲</option>
+                            <option value="7" >問號掉落</option>
+                            <option value="8" >自訂義</option>
+                        </select>
+                    </div><br>
+                    <div id="DropColorScrollbar" class="content horizontal-images">
+                        <ul id="OptionalColors" IDmaker="0">
+                            <li>
+                                <div class="addNewColor" onclick="addColorIntoBar()" >
+                                    <span class="glyphicon glyphicon-plus"style="vertical-align:middle"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div><br><br>
+                    <div id="teamAttrSetting" class="btn-group" role="group">
+                    </div> -->
+                </div>
+
+                <div id="TeamModeButton">
+                    <table id="TeamMember" >
+                        <tr>
+                            <td> 
+                                <h4 style="color: black;text-align: center;">隊長</h4>
+                                <select id="LeaderMember"></select></td>
+                            <td> 
+                                <h4 style="color: black;text-align: center;">隊友</h4>
+                                <select id="FriendMember"></select></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="RoleModeButton">
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-default btn-lg" onclick="loadRole(1)">
+                            <span>拿總五色</span></button>
+                        <button class="btn btn-default btn-lg" onclick="loadRole(2)">
+                            <span>拿總雙色</span></button>
+                        <button class="btn btn-default btn-lg" onclick="loadRole(3)">
+                            <span>拿總三色</span></button>
+                    </div>
+                </div>
+
+                <div id="MoveModeButton">
+                    <!-- <div id="PanelLoader">
+                        <button class="btn btn-default btn-lg" onclick="randomPanelToMove()">
+                            <span>隨機盤面</span></button>
+                        <div class="btn-group" role="group">
+                            <button class="btn btn-default btn-lg" onclick="loadPanel(1)">
+                                <span>讀取盤面1</span></button>
+                            <button class="btn btn-default btn-lg" onclick="loadPanel(2)">
+                                <span>讀取盤面2</span></button>
+                            <button class="btn btn-default btn-lg" onclick="loadPanel(3)">
+                                <span>讀取盤面3</span></button>
+                        </div>
+                    </div><br> -->
+                    <div id="MoveAttrSetting" class="btn-group" role="group">
+                        <button class="btn btn-default btn-lg" onclick="setFreeMove(this)">
+                            <span >自由移動</span></button>
+                        <span class="btn btn-default btn-lg" disabled style="cursor: default;">
+                            時間</span>
+                        <input id="TimeNumber" type="number" value="30" max="60" min="1" class="btn btn-default btn-lg" onchange="setTimeLimit(this)" >
+                        <button type="button" class="btn btn-default btn-lg" onclick="setTimeLimitUp($('#TimeNumber'))">
+                            <span class="glyphicon glyphicon-chevron-up" ></span>
+                        </button>
+                        <button type="button" class="btn btn-default btn-lg" onclick="setTimeLimitDown($('#TimeNumber'))">
+                            <span class="glyphicon glyphicon-chevron-down" ></span>
+                        </button>
+                    </div>
+                    <br><br>
+                    
+                    <div id="locusAttrSetting" class="btn-group" role="group">
+                        <button class="btn btn-default btn-lg" onclick="setNewDrop(this)">
+                            <span >隨機落珠</span></button>
+                        <button class="btn btn-default btn-lg" onclick="setInfLocus(this)">
+                            <span >持續軌跡</span></button>
+                        <select id="locusSelect" class="selectpicker" data-width="150px" title="軌跡選擇" onchange="setLocusMode(this)">
+                            <option value="0" >無軌跡</option>
+                            <option value="1" >軌跡黑白</option>
+                            <option value="2" >軌跡問號</option>
+                            <option value="3" >軌跡燃燒</option>
+                            <option value="4" >軌跡腐蝕</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="ReplayModeButton">
+                    <div id="ReplayAttrSetting" class="btn-group" role="group">
+                        <button class="btn btn-default btn-lg" onclick="stopReplay(this)">
+                            <span>暫停動作</span></button>
+                        <button class="btn btn-default btn-lg" onclick="showRecord(this)">
+                            <span>顯示軌跡</span></button>
+                        <span class="btn btn-default btn-lg">速度</span>
+                        <input type="number" value="5" max="10" min="1" class="btn btn-default btn-lg" onchange="setReplaySpeed(this)" >
+                    </div><br><br>
+                    <button id="DownloadPath" class="btn btn-primary btn-lg" onclick="downloadPath(this)">
+                        <span>下載路徑</span></button>
+                    <button id="ReplayURLSetting" class="btn btn-primary btn-lg" onclick="shareUrl(this)">
+                        <span>播放連結</span></button>
+                </div><br>
+            </div>
+
+            <div class="col-lg-3">
+                <br><br>
+                <div id="ComboDiv">
+                    <br>
+                    <div id="ComboInfo" align="center">
+                        <span id="moveNum"></span> 步 <br>
+                        <span id="comboNum"></span><span id="extraCombo"></span> Combo <br>
+                    </div>
+                    <div id="ComboScrollbar" class="content mCustomScrollbar">
+                        <div id="comboBox" wave="-1"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div id="MobileComboDiv" class="col-lg-12"></div>
+        </div>
+
+        <footer> 
+            <div class="row">
+                <div class="col-lg-12" align="center">
+                    <!--img src="img/UI/logo.png" -->
+                    <p> louisalflame@PTT</p>
+                    <!-- <p>最後修改日期: 2018/02/25</p> -->
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- Javascript for this html -->
+
+    <script type="text/javascript" src="js/bootstrap-select/bootstrap-select.min.js" ></script>
+    <script type="text/javascript" src="js/filestyle/bootstrap-filestyle.min.js"> </script>
+    <script type="text/javascript" src="js/autohidingnavbar/jquery.bootstrap-autohidingnavbar.min.js" ></script>
+    <script type="text/javascript" src="js/jquery-ui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/url/url.min.js"></script>
+    <script type="text/javascript" src="js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="js/LZstring/lz-string.min.js"></script>
+    <script type="text/javascript" src="js/msdropdown/jquery.dd.js"></script>
+    <script type="text/javascript" src="js/utility.js"></script>
+
+    <script type="text/javascript" src="canvas/button.js"></script>
+    <script type="text/javascript" src="canvas/sceneManager.js"></script>
+    <script type="text/javascript" src="canvas/UIManager.js"></script>
+    <script type="text/javascript" src="canvas/strategy.js"></script>
+    <script type="text/javascript" src="canvas/ball.js"></script>
+    <script type="text/javascript" src="canvas/history.js"></script>
+    <script type="text/javascript" src="canvas/environment.js"></script>
+    <script type="text/javascript" src="canvas/teamManager.js"></script>
+    <script type="text/javascript" src="canvas/global.js"></script>
+    <script type="text/javascript" src="canvas/main.js"></script>
+
+    <script type="text/javascript" src="data/data.js"></script>
+    <script type="text/javascript" src="data/leaderSkill.js"></script>
+    <script type="text/javascript" src="data/wake.js"></script>
+    <script type="text/javascript" src="data/teamSkill.js"></script>
+
+
+    <script src="js/msdropdown/jquery.dd.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="css/dd/dd.css" />
+</body>
+
+</html>
